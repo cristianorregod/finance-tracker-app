@@ -9,9 +9,9 @@ export const SelectField = ({
   required = false,
   className = '',
   optionValue = 'id',
+  error = null,
   control,
 }) => {
-  console.log(label, ': ', name, 'optionValue: ', optionValue)
   return (
     <div className={className}>
       <Controller
@@ -33,6 +33,7 @@ export const SelectField = ({
                 </Option>
               ))}
             </Select>
+            <small className="text-red-600">{fieldState.error}</small>
           </div>
         )}
       />

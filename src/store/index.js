@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import accountsReducer from '@/accounts/slice'
-import dashboardReducer from '@/dashboard/slice'
-import budgetsReducer from '@/budgets/slice'
-import transactionsReducer from '@/transactions/slice'
+import accountsReducer from '@/modules/accounts/slice'
+import dashboardReducer from '@/modules/dashboard/slice'
+import budgetsReducer from '@/modules/budgets/slice'
+import transactionsReducer from '@/modules/transactions/slice'
+import localStorageMiddleware from '@/modules/dashboard/middleware/auth-storage'
 export const store = configureStore({
   reducer: {
     accounts: accountsReducer,
@@ -10,4 +11,5 @@ export const store = configureStore({
     budgets: budgetsReducer,
     transactions: transactionsReducer,
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(localStorageMiddleware),
 })

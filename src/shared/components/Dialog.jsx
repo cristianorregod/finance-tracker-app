@@ -1,4 +1,4 @@
-import { setDefaultDialogOpen } from '@/dashboard/slice'
+import { setDefaultDialogOpen } from '@/modules/dashboard/slice'
 import { Button, Dialog, DialogHeader, DialogBody, DialogFooter } from '@material-tailwind/react'
 import { useDispatch } from 'react-redux'
 

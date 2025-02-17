@@ -71,3 +71,25 @@ export const ROUTES = {
   TRANSACTIONS: '/transactions',
   ACCOUNTS: '/accounts',
 }
+
+export const TRANSACTION_TYPES = {
+  INCOME: 'INCOME',
+  EXPENSE: 'EXPENSE',
+  TRANSFER: 'TRANSFER',
+  SAVING: 'SAVING',
+}
+
+export const TRANSACTION_TYPES_OPTIONS = [
+  { name: 'Income', id: TRANSACTION_TYPES.INCOME },
+  { name: 'Expense', id: TRANSACTION_TYPES.EXPENSE },
+  { name: 'Saving', id: TRANSACTION_TYPES.SAVING },
+  { name: 'Transfer', id: TRANSACTION_TYPES.TRANSFER },
+]
+
+export const ACCOUNT_TYPES = [
+  { name: 'Ahorros', id: 'Ahorros' },
+  { name: 'Tarjeta de credito', id: 'Tarjeta de credito' },
+  { name: 'Inversiones', id: 'Inversiones' },
+  { name: 'Efectivo', id: 'Efectivo' },
+  { name: 'Billetera Digital', id: 'Billetera Digital' },
+]
