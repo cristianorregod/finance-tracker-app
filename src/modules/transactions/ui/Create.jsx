@@ -51,7 +51,7 @@ export const CreateTransaction = () => {
   }
   const transaction_type = watch('type')
   return (
-    <div>
+    <div className="pb-20">
       <Button
         variant="outlined"
         size="sm"
@@ -62,7 +62,7 @@ export const CreateTransaction = () => {
       </Button>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full max-w-fit mt-10 mx-auto p-6 bg-white rounded-lg shadow-md"
+        className="w-full lg:max-w-fit mt-10 mx-auto p-6 bg-white rounded-lg shadow-md"
         autoComplete="off"
       >
         <Typography variant="h4" color="blue-gray" className="mb-6">
@@ -86,7 +86,7 @@ export const CreateTransaction = () => {
           error={errors.description}
         />
 
-        <div className="grid grid-cols-2 gap-x-4">
+        <div className="grid lg:grid-cols-2 gap-x-4">
           <CurrencyField className="mb-4" control={control} label="Amount" name="amount" required={true} />
 
           <SelectField

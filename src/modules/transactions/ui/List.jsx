@@ -33,7 +33,6 @@ export const TransactionList = () => {
   const dispatch = useDispatch()
   const { defaultDialogOpen } = useSelector((state) => state.dashboard)
   const { transactions } = useSelector((state) => state.transactions)
-  console.log('transaction', transactions)
   // Estados para paginación
   const [currentPage, setCurrentPage] = useState(1) // Página actual
   const rowsPerPage = 5 // Filas por página

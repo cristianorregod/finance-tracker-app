@@ -62,7 +62,7 @@ export const CreateBudget = () => {
           register={register}
           error={errors.description}
         />
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid lg:grid-cols-2 lg:gap-4">
           <DefaultInput
             className="mb-4"
             label="Budget amount"

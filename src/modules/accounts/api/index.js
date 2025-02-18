@@ -4,7 +4,6 @@ import { apiFetch } from '@/shared/api/apiFetch'
 const AccountApi = {
   get: async () => {
     const response = await apiFetch('/accounts/')
-    console.log(response)
     return response
   },
   create: async (account) => {

@@ -1,18 +1,17 @@
-const { VITE_API_URL } = import.meta.env
+import { apiFetch } from '@/shared/api/apiFetch'
 
 const TransactionApi = {
+  get: async () => {
+    const response = await apiFetch('/transactions/')
+    return response
+  },
   create: async (transaction) => {
-    const response = await fetch(`${VITE_API_URL}/transactions/`, {
+    const response = await apiFetch(`/transactions/`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
       body: JSON.stringify(transaction),
     })
-    if (!response.ok) {
-      throw new Error('Network response was not ok')
-    }
-    return await response.json()
+
+    return response
   },
 }
 

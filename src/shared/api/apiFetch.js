@@ -19,7 +19,12 @@ export const apiFetch = async (endpoint, options = {}) => {
   const response = await fetch(`${VITE_API_URL}${endpoint}`, config)
 
   if (!response.ok) {
-    throw new Error(`Error: ${response.status} ${response.statusText}`)
+    const errorData = await response.json()
+    if (response.status === 403) {
+      localStorage.removeItem('token')
+      window.location.href = '/login'
+    }
+    throw { status: response.status, statusText: response.statusText, data: errorData }
   }
 
   return response.json()

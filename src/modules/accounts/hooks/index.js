@@ -1,4 +1,4 @@
-import { setError, setLoading } from '@/modules/dashboard/slice'
+import { logout, setError, setLoading } from '@/modules/dashboard/slice'
 import { useDispatch } from 'react-redux'
 import { toast } from 'sonner'
 import { addAccount, setAccounts } from '../slice'
@@ -15,6 +15,12 @@ const useAccount = () => {
       dispatch(setLoading(false))
     } catch (error) {
       console.log('error', error)
+      if (error.status === 403) {
+        toast.error(error?.data?.detail)
+        dispatch(setError(error?.data?.detai))
+        dispatch(setLoading(false))
+        dispatch(logout())
+      }
       toast.error('Failed to get accounts')
       dispatch(setError(error.message))
       dispatch(setLoading(false))

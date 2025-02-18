@@ -23,7 +23,7 @@ export function MobileMenu() {
     dispatch(logout())
   }
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 md:hidden">
+    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-[9999] md:hidden">
       <ul className="flex justify-around items-center h-16">
         {menuItems.map((item) => (
           <li key={item.name} className=" rounded-lg hover:bg-gray-100">

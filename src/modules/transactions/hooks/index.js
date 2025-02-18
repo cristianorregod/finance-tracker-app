@@ -1,12 +1,32 @@
-import { setLoading, setError } from '@/modules/dashboard/slice'
+import { setLoading, setError, logout } from '@/modules/dashboard/slice'
 import { useDispatch } from 'react-redux'
 import TransactionApi from '../api'
-import { addTransaction, setTransactionView } from '../slice'
+import { addTransaction, setTransactions, setTransactionView } from '../slice'
 import { toast } from 'sonner'
 import { TRANSACTIONS_VIEWS } from '@/shared/helpers/constants'
 
 const useTransaction = () => {
   const dispatch = useDispatch()
+  const getTransactions = async () => {
+    dispatch(setLoading(true))
+    try {
+      const transactions = await TransactionApi.get()
+      dispatch(setTransactions(transactions))
+      dispatch(setLoading(false))
+    } catch (error) {
+      console.log('error', error)
+      if (error.status === 403) {
+        toast.error(error?.data?.detail)
+        dispatch(setError(error?.data?.detai))
+        dispatch(setLoading(false))
+        dispatch(logout())
+      }
+      toast.error('Failed to get transactions')
+      dispatch(setError(error.message))
+      dispatch(setLoading(false))
+    }
+  }
+
   const createTransaction = async (transaction) => {
     dispatch(setLoading(true))
     try {
@@ -22,7 +42,7 @@ const useTransaction = () => {
       dispatch(setLoading(false))
     }
   }
-  return { createTransaction }
+  return { createTransaction, getTransactions }
 }
 
 export default useTransaction

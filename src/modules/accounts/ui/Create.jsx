@@ -67,7 +67,7 @@ export const CreateAccount = () => {
           error={errors.account_type}
           options={ACCOUNT_TYPES}
         />
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid lg:grid-cols-2 lg:gap-4">
           <DefaultInput
             className="mb-4"
             label="Initial balance"
