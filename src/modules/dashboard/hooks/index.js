@@ -16,7 +16,13 @@ const useDasboardProvider = () => {
 
     dispatch(setLoading(true))
     try {
-      const response = await fetch(`${VITE_API_URL}/parameters/`)
+      const response = await fetch(`${VITE_API_URL}/parameters/`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      })
       if (!response.ok) {
         throw new Error('Network response was not ok')
       }
