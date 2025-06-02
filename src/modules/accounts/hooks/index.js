@@ -1,7 +1,7 @@
 import { logout, setError, setLoading } from '@/modules/dashboard/slice'
 import { useDispatch } from 'react-redux'
 import { toast } from 'sonner'
-import { addAccount, setAccounts } from '../slice'
+import { addAccount, setAccounts, setAccountDetails } from '../slice'
 import AccountApi from '../api'
 
 const useAccount = () => {
@@ -17,7 +17,7 @@ const useAccount = () => {
       console.log('error', error)
       if (error.status === 403) {
         toast.error(error?.data?.detail)
-        dispatch(setError(error?.data?.detai))
+        dispatch(setError(error?.data?.detail))
         dispatch(setLoading(false))
         dispatch(logout())
       }
@@ -42,7 +42,21 @@ const useAccount = () => {
       dispatch(setLoading(false))
     }
   }
-  return { getAccounts, createAccount }
+
+  const getAccountById = async (id) => {
+    dispatch(setLoading(true))
+    try {
+      const account = await AccountApi.getById(id)
+      dispatch(setAccountDetails(account))
+      dispatch(setLoading(false))
+    } catch (error) {
+      console.log('error', error)
+      toast.error('Failed to get account')
+      dispatch(setError(error.message))
+      dispatch(setLoading(false))
+    }
+  }
+  return { getAccounts, createAccount, getAccountById }
 }
 
 export default useAccount

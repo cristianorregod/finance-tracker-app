@@ -11,8 +11,11 @@ const AccountApi = {
       method: 'POST',
       body: JSON.stringify(account),
     })
-    console.log(response)
 
+    return response
+  },
+  getById: async (id) => {
+    const response = await apiFetch(`/accounts/${id}`)
     return response
   },
 }

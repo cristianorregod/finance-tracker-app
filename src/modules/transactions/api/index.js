@@ -1,18 +1,18 @@
-import { apiFetch } from '@/shared/api/apiFetch'
+import { apiFetch } from "@/shared/api/apiFetch";
 
 const TransactionApi = {
-  get: async () => {
-    const response = await apiFetch('/transactions/')
-    return response
+  get: async (filter = "all") => {
+    const response = await apiFetch(`/transactions/?filter=${filter}`);
+    return response;
   },
   create: async (transaction) => {
     const response = await apiFetch(`/transactions/`, {
-      method: 'POST',
+      method: "POST",
       body: JSON.stringify(transaction),
-    })
+    });
 
-    return response
+    return response;
   },
-}
+};
 
-export default TransactionApi
+export default TransactionApi;

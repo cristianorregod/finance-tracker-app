@@ -7,6 +7,7 @@ const accountsSlice = createSlice({
     accountSelected: null,
     viewState: 'account-list', // account-list, account-selected, new-account
     newAccount: null,
+    accountDetails: null,
   },
   reducers: {
     setAccounts: (state, action) => {
@@ -22,8 +23,11 @@ const accountsSlice = createSlice({
     addAccount: (state, action) => {
       state.accounts.push(action.payload)
     },
+    setAccountDetails: (state, action) => {
+      state.accountDetails = action.payload
+    },
   },
 })
 
-export const { setAccounts, selectAccount, setViewState, addAccount } = accountsSlice.actions
+export const { setAccounts, selectAccount, setViewState, addAccount, setAccountDetails } = accountsSlice.actions
 export default accountsSlice.reducer

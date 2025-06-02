@@ -1,4 +1,6 @@
 const { VITE_API_URL } = import.meta.env // Reemplaza con la URL de tu API
+import { store } from '@/store'
+import { logout } from '@/modules/dashboard/slice'
 
 export const apiFetch = async (endpoint, options = {}) => {
   const token = localStorage.getItem('token') // Obtener el token desde localStorage o sessionStorage
@@ -21,7 +23,7 @@ export const apiFetch = async (endpoint, options = {}) => {
   if (!response.ok) {
     const errorData = await response.json()
     if (response.status === 403) {
-      localStorage.removeItem('token')
+      store.dispatch(logout())
       window.location.href = '/login'
     }
     throw { status: response.status, statusText: response.statusText, data: errorData }
