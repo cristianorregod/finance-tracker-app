@@ -1,44 +1,53 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 const dashboardSlice = createSlice({
-  name: 'dashboard',
+  name: "dashboard",
   initialState: {
     isLoading: false,
-    error: '',
+    error: "",
     defaultDialogOpen: false,
     categories: [],
     auth: {
-      isAuthenticated: JSON.parse(localStorage.getItem('isAuthenticated') || 'false'),
-      user: localStorage.getItem('user'),
-      token: localStorage.getItem('token'),
+      isAuthenticated: JSON.parse(
+        localStorage.getItem("isAuthenticated") || "false"
+      ),
+      user: localStorage.getItem("user"),
+      token: localStorage.getItem("token"),
     },
   },
   reducers: {
     setLoading: (state, action) => {
-      state.isLoading = action.payload
+      state.isLoading = action.payload;
     },
     setError: (state, action) => {
-      state.error = action.payload
+      state.error = action.payload;
     },
     setDefaultDialogOpen: (state, action) => {
-      state.defaultDialogOpen = action.payload
+      state.defaultDialogOpen = action.payload;
     },
     setCategories: (state, action) => {
-      state.categories = action.payload
+      state.categories = action.payload;
     },
     setLogin: (state, action) => {
-      state.auth = action.payload
+      state.auth = action.payload;
     },
     logout: (state) => {
       state.auth = {
         isAuthenticated: false,
         user: null,
         token: null,
-      }
-      localStorage.removeItem('isAuthenticated')
-      localStorage.removeItem('token')
-      localStorage.removeItem('user')
+      };
+      localStorage.removeItem("isAuthenticated");
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
     },
   },
-})
-export const { setLoading, setError, setDefaultDialogOpen, setCategories, setLogin, logout } = dashboardSlice.actions
-export default dashboardSlice.reducer
+});
+export const {
+  setLoading,
+  setError,
+  setDefaultDialogOpen,
+  setCategories,
+  setLogin,
+  logout,
+} = dashboardSlice.actions;
+export default dashboardSlice.reducer;
