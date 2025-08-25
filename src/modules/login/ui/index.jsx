@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 import useLogin from '../hooks'
+import { Chip } from '@material-tailwind/react'
 
 // @icons
 
@@ -14,6 +15,8 @@ export function Login() {
   const navigate = useNavigate()
   const { login } = useLogin()
   const isAuthenticated = useSelector((state) => state.dashboard.auth.isAuthenticated)
+  const loginError = useSelector((state) => state.dashboard.error)
+  console.log('loginError', loginError)
   const onSubmit = async (e) => {
     e.preventDefault()
     console.log({ email, password })
@@ -46,6 +49,7 @@ export function Login() {
                   type="email"
                   value={email}
                   name="email"
+                  min={25}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full placeholder:opacity-100  border-t-blue-gray-200"
                 />
@@ -61,9 +65,11 @@ export function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                   className="w-full placeholder:opacity-100  border-t-blue-gray-200"
                   autoComplete="off"
+                  min={6}
                 />
               </div>
-              <Button size="lg" color="gray" fullWidth type="submit">
+              {loginError && <Typography color="red" className="text-sm text-center">{loginError}</Typography>}
+              <Button size="lg" color="gray" fullWidth type="submit" className={!email || !password ? 'bg-gray-600' : ''} disabled={!email || !password}>
                 Login
               </Button>
             </form>

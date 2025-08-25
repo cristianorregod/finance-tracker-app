@@ -9,10 +9,12 @@ const AuthApi = {
       },
       body: JSON.stringify(user),
     })
+
+    const loginData = await response.json()
     if (!response.ok) {
-      throw new Error('Network response was not ok')
+      throw new Error(loginData.details || 'Network response was not ok')
     }
-    return await response.json()
+    return loginData
   },
 }
 

@@ -74,7 +74,7 @@ export const CreateTransaction = () => {
           name="title"
           required={true}
           register={register}
-          validation={{ minLength: { value: 5, message: 'At least 15 characters' } }}
+          validation={{ minLength: { value: 5, message: 'At least 5 characters' }, maxLength: { value: 25, message: 'Maximum 25 characters' } }}
           error={errors.title}
         />
         <DefaultInput
