@@ -15,14 +15,9 @@ const useTransaction = () => {
       dispatch(setLoading(false));
     } catch (error) {
       console.log("error", error);
-      if (error.status === 403) {
-        toast.error(error?.data?.detail);
-        dispatch(setError(error?.data?.detai));
-        dispatch(setLoading(false));
-        dispatch(logout());
-      }
       toast.error("Failed to get transactions");
       dispatch(setError(error.message));
+    } finally {
       dispatch(setLoading(false));
     }
   };

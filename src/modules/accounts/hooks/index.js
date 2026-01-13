@@ -15,14 +15,9 @@ const useAccount = () => {
       dispatch(setLoading(false))
     } catch (error) {
       console.log('error', error)
-      if (error.status === 403) {
-        toast.error(error?.data?.detail)
-        dispatch(setError(error?.data?.detail))
-        dispatch(setLoading(false))
-        dispatch(logout())
-      }
       toast.error('Failed to get accounts')
       dispatch(setError(error.message))
+    } finally {
       dispatch(setLoading(false))
     }
   }

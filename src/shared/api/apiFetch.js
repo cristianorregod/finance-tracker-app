@@ -21,13 +21,21 @@ export const apiFetch = async (endpoint, options = {}) => {
   const response = await fetch(`${VITE_API_URL}${endpoint}`, config)
 
   if (!response.ok) {
-    const errorData = await response.json()
-    if (response.status === 403) {
+    let errorData = {}
+    try {
+      const text = await response.text()
+      errorData = text ? JSON.parse(text) : {}
+    } catch (e) {
+      console.error('Error parsing error response:', e)
+    }
+
+    if (response.status === 401 || response.status === 403) {
       store.dispatch(logout())
       window.location.href = '/login'
     }
     throw { status: response.status, statusText: response.statusText, data: errorData }
   }
 
-  return response.json()
+  const responseText = await response.text()
+  return responseText ? JSON.parse(responseText) : {}
 }
